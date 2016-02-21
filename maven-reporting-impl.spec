@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.2
-Release:        8.10%{?dist}
+Release:        8.11%{?dist}
 Summary:        Abstract classes to manage report generation
 License:        ASL 2.0
 URL:            http://maven.apache.org/shared/maven-reporting-impl
@@ -16,16 +16,16 @@ Source1:        http://www.apache.org/licenses/LICENSE-2.0.txt
 BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-mvn(commons-validator:commons-validator)
+BuildRequires:  %{?scl_prefix}mvn(commons-validator:commons-validator)
 BuildRequires:  %{?scl_prefix_java_common}mvn(junit:junit)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-core)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-sink-api)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-site-renderer)
-BuildRequires:  maven30-mvn(org.apache.maven.reporting:maven-reporting-api)
-BuildRequires:  maven30-mvn(org.apache.maven.shared:maven-shared-components:pom:)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-plugin-api)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-project)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-utils)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-core)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-sink-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-site-renderer)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.reporting:maven-reporting-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.shared:maven-shared-components:pom:)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-plugin-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-project)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-utils)
 %{?fedora:BuildRequires: junit-addons}
 
 
@@ -45,19 +45,19 @@ API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 cp -p %{SOURCE1} LICENSE.txt
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build %{!?fedora:-f}
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -71,6 +71,9 @@ set -e -x
 %doc LICENSE.txt
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.2-8.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 2.2-8.10
 - maven33 rebuild
 
