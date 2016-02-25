@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.2
-Release:        8.11%{?dist}
+Release:        8.12%{?dist}
 Summary:        Abstract classes to manage report generation
 License:        ASL 2.0
 URL:            http://maven.apache.org/shared/maven-reporting-impl
@@ -15,7 +15,7 @@ Source0:        %{pkg_name}-%{version}.tar.xz
 Source1:        http://www.apache.org/licenses/LICENSE-2.0.txt
 BuildArch:      noarch
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}mvn(commons-validator:commons-validator)
 BuildRequires:  %{?scl_prefix_java_common}mvn(junit:junit)
 BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-core)
@@ -71,6 +71,9 @@ set -e -x
 %doc LICENSE.txt
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 2.2-8.12
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.2-8.11
 - maven33 rebuild #2
 
